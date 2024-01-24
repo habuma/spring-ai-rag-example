@@ -1,8 +1,8 @@
-Spring in Action AI
+Spring AI RAG Example
 ---
-Simple example to load the entire text of Spring in Action (or any other PDF)
-into a vector store and then expose an API through which questions can be
-asked about the book's content.
+Simple example to load the entire text of a PDF  into a vector store and 
+then expose an API through which questions can be asked about the PDF's 
+content.
 
 Before running the application, you'll need to acquire an OpenAI API key.
 Set the API key as an environment variable named `OPENAI_API_KEY`. E.g.,
@@ -11,12 +11,9 @@ Set the API key as an environment variable named `OPENAI_API_KEY`. E.g.,
 $ export OPENAI_API_KEY=sk-1234567890abcdef1234567890abcdef
 ```
 
-You'll also need a PDF for it to load. The code has been written to load
-a file named "Spring_in_Action_Sixth_Edition.pdf" from src/main/resources/data.
-For what may or may not be obvious reasons, I've chosen not to include that PDF
-in this repository, so you'll need to obtain your own copy. Of course, most any
-other PDF will also work. You'll just need to make sure that the `app.pdf.name`
-property is set to reference your PDF's filename.
+You'll also need a PDF for it to load. Place the PDF in src/main/resources/data
+and set the `app.pdf.name` property in src/main/resources/application.properties
+to the name of the PDF.
 
 Then run the application as you would any Spring Boot application. For
 example, using Maven:
@@ -35,12 +32,13 @@ Then you can use `curl` to ask questions:
 $ curl localhost:8080/ask -H"Content-type: application/json" -d '{"question": "What annotation should I use to create a REST controller?"}'
 ```
 
+> The question shown in the example was used to ask questions against my book,
+[Spring in Action, 6th Edition](https://www.manning.com/books/spring-in-action-sixth-edition?a_aid=habuma&a_bid=f205d999&chan=habuma). 
+You'll want to ask questions relevant to whatever PDF you're using.
+
 Or with HTTPie it's a little easier:
 
 ```
 http :8080/ask question="What annotation should I use to create a REST controller?"
 ```
 
-Note that the questions will be answered using the content of the book.
-That means that sometimes the answers will be given in the context of the
-book's example application, Taco Cloud.

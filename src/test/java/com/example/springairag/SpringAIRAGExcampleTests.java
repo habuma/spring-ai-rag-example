@@ -1,10 +1,10 @@
-package com.example.springinactionai;
+package com.example.springairag;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringInActionAiApplicationTests {
+class SpringAIRAGExcampleTests {
 
     @Test
     void contextLoads() {

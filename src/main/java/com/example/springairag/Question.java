@@ -1,4 +1,4 @@
-package com.example.springinactionai;
+package com.example.springairag;
 
 public record Question(String question) {
 }
