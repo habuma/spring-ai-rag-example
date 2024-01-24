@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>spring-in-action-ai</artifactId>
+    <artifactId>spring-ai-rag-example</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring-in-action-ai</name>
-    <description>spring-in-action-ai</description>
+    <name>spring-ai-rag-example</name>
+    <description>Example of doing RAG in Spring AI</description>
     <properties>
         <java.version>17</java.version>
         <SPRING_AI_VERSION>0.8.0-SNAPSHOT</SPRING_AI_VERSION>

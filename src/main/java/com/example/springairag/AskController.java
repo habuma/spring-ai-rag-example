@@ -8,6 +8,7 @@ import org.springframework.ai.prompt.PromptTemplate;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +26,7 @@ public class AskController {
     private final VectorStore vectorStore;
 
     @Value("classpath:/rag-prompt-template.st")
-    private String ragPromptTemplate;
+    private Resource ragPromptTemplate;
 
 
     public AskController(ChatClient aiClient, VectorStore vectorStore) {
@@ -37,11 +38,11 @@ public class AskController {
     public Answer ask(@RequestBody Question question) {
         List<Document> similarDocuments = vectorStore.similaritySearch(SearchRequest.query(question.question()).withTopK(2));
         List<String> contentList = similarDocuments.stream().map(Document::getContent).toList();
-
         PromptTemplate promptTemplate = new PromptTemplate(ragPromptTemplate);
         Map<String, Object> promptParameters = new HashMap<>();
         promptParameters.put("input", question.question());
         promptParameters.put("documents", String.join("\n", contentList));
+        String rendered = promptTemplate.render(promptParameters);
         Prompt prompt = promptTemplate.create(promptParameters);
 
         ChatResponse response = aiClient.generate(prompt);

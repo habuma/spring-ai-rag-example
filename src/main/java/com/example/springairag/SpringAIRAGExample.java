@@ -28,7 +28,7 @@ public class SpringAIRAGExample {
     @Value("${app.vectorstore.path:/tmp/vectorstore.json}")
     private String vectorStorePath;
 
-    @Value("${app.pdf.resource}")
+    @Value("${app.resource}")
     private Resource pdfResource;
 
     @Bean
