@@ -30,9 +30,9 @@ example, using Maven:
 $ mvn spring-boot:run
 ```
 
-The first time you run it, it will take a little while to load the PDF into
+The first time you run it, it will take a little while to load the document into
 the vector store (which will be persisted at /tmp/vectorstore.json). Subsequent
-runs will just use the persisted vector store and not try to load the PDF again.
+runs will just use the persisted vector store and not try to load the document again.
 (This means that if you change the document resource, you'll need to delete
 /tmp/vectorstore.json so that it will be reloaded.)
 
@@ -44,7 +44,7 @@ $ curl localhost:8080/ask -H"Content-type: application/json" -d '{"question": "W
 
 > The question shown in the example was used to ask questions against my book,
 [Spring in Action, 6th Edition](https://www.manning.com/books/spring-in-action-sixth-edition?a_aid=habuma&a_bid=f205d999&chan=habuma). 
-You'll want to ask questions relevant to whatever PDF you're using.
+You'll want to ask questions relevant to whatever document you're using.
 
 Or with HTTPie it's a little easier:
 
