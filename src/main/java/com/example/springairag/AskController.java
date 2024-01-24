@@ -2,9 +2,9 @@ package com.example.springairag;
 
 import org.springframework.ai.chat.ChatClient;
 import org.springframework.ai.chat.ChatResponse;
+import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.document.Document;
-import org.springframework.ai.prompt.Prompt;
-import org.springframework.ai.prompt.PromptTemplate;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Value;
@@ -45,8 +45,8 @@ public class AskController {
         String rendered = promptTemplate.render(promptParameters);
         Prompt prompt = promptTemplate.create(promptParameters);
 
-        ChatResponse response = aiClient.generate(prompt);
-        return new Answer(response.getGeneration().getContent());
+        ChatResponse response = aiClient.call(prompt);
+        return new Answer(response.getResult().getOutput().getContent());
     }
 
 }
