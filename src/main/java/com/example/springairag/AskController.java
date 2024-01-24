@@ -42,7 +42,6 @@ public class AskController {
         Map<String, Object> promptParameters = new HashMap<>();
         promptParameters.put("input", question.question());
         promptParameters.put("documents", String.join("\n", contentList));
-        String rendered = promptTemplate.render(promptParameters);
         Prompt prompt = promptTemplate.create(promptParameters);
 
         ChatResponse response = aiClient.call(prompt);
