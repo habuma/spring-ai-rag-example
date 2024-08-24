@@ -3,8 +3,7 @@ package com.example.springairag;
 import java.io.File;
 import java.util.List;
 
-import org.springframework.ai.chat.ChatClient;
-import org.springframework.ai.chat.ChatModel;
+import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.ai.reader.tika.TikaDocumentReader;
@@ -31,8 +30,8 @@ public class SpringAIRAGExample {
     private Resource pdfResource;
 
     @Bean
-    ChatClient chatClient(ChatModel chatModel) {
-        return ChatClient.builder(chatModel).build();
+    ChatClient chatClient(ChatClient.Builder chatClientBuilder) {
+        return chatClientBuilder.build();
     }
 
     @Bean
